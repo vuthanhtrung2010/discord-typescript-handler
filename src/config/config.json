@@ -1,0 +1,55 @@
+{
+  "prefix": ".",
+  "ownerIDS": ["1139406664584409159"],
+  "clientsettings": {
+    "nodes": [
+      {
+        "identifier": "Cali",
+        "host": "lavalink.oryzen.xyz",
+        "port": 80,
+        "password": "oryzen.xyz",
+        "version": "v4",
+        "secure": false
+      },
+      {
+        "identifier": "Trung - Datalix",
+        "host": "37.114.46.15",
+        "port": 2333,
+        "password": "trungisadev",
+        "version": "v4",
+        "secure": false
+      }
+    ]
+  },
+  "serverid": "",
+  "server_type": "vm",
+  "spotify": {
+    "clientSecret": "",
+    "clientID": ""
+  },
+  "status": {
+    "text": "with trungisreal",
+    "text2": "By: trungisreal",
+    "type": "PLAYING",
+    "url": "https://discord.gg/w36p2nQMz4"
+  },
+  "settings": {
+    "COMMENT": "time_delay 0 === insta leave",
+    "leaveOnEmpty_Channel": {
+      "enabled": true,
+      "time_delay": 30000
+    },
+    "LeaveOnEmpty_Queue": {
+      "enabled": true,
+      "time_delay": 30000
+    },
+    "selfDeaf": true
+  },
+  "lyricssettings": {
+    "lyrics_finder": true,
+    "ksoft_api": {
+      "use_this_instead": true,
+      "api_key": "DISABLED"
+    }
+  }
+}

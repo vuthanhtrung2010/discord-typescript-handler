@@ -1,0 +1,103 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Setups
+model Setups {
+  serverID     String            @id @unique
+  logsChannel  String
+  prefix       String
+  showdisabled Boolean           @default(false)
+  commands     CommandsSetup[]
+  moderation   ModerationSetup[]
+  language     String            @default("en")
+}
+
+model CommandsSetup {
+  guildID        String  @id
+  Economy        Boolean @default(true)
+  School         Boolean @default(true)
+  Music          Boolean @default(true)
+  Filter         Boolean @default(true)
+  Programming    Boolean @default(true)
+  Ranking        Boolean @default(true)
+  Voice          Boolean @default(true)
+  Fun            Boolean @default(true)
+  Minigames      Boolean @default(true)
+  CustomQueue    Boolean @default(true)
+  Anime          Boolean @default(true)
+  Setups         Setups? @relation(fields: [setupsServerID], references: [serverID])
+  setupsServerID String?
+}
+
+model ModerationSetup {
+  guildID             String  @id
+  muterole            String
+  AntiScamURL         Boolean @default(true)
+  mutestyle           String  @default("timeout")
+  DefaultMuteDuration Int     @default(604800000)
+  Setups              Setups? @relation(fields: [setupsServerID], references: [serverID])
+  setupsServerID      String?
+}
+
+// AFK
+model Afk {
+  message String
+  userID  String
+  guildID String
+  stamp   Int
+  isAfk   Boolean @default(false)
+
+  @@unique([userID, guildID])
+}
+
+// Mutes
+model Mutes {
+  userID    String
+  timestamp DateTime  @default(now())
+  guildID   String
+  muteTime  DateTime?
+  roleID    String
+
+  @@unique([userID, guildID])
+}
+
+// Messages & Invites Stats
+model DailyMessage {
+  id       Int    @id @default(autoincrement())
+  messages Int
+  userID   String
+  serverID String
+
+  @@unique([userID, serverID])
+}
+
+model WeeklyMessage {
+  id       Int    @id @default(autoincrement())
+  messages Int
+  userID   String
+  serverID String
+
+  @@unique([userID, serverID])
+}
+
+model Message {
+  id       Int    @id @default(autoincrement())
+  messages Int
+  userID   String
+  serverID String
+
+  @@unique([userID, serverID])
+}
+
+// Stats 
+model Stats {
+  datasource String @unique
+  commands   Int
+  songs      Int
+}
