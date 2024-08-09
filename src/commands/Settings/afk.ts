@@ -46,7 +46,7 @@ export const Command: MessageCommand = {
         );
 
       // Set the data to the caches
-      client.caches?.set(`${message.guildId + message.author?.id}.afk`, {
+      client.caches?.set(`${message.guildId + message.author.id}.afk`, {
         isAfk: true,
         message: args[0] ? args.join(" ") : "AFK",
         stamp: current_date,

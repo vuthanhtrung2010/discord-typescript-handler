@@ -1,4 +1,3 @@
-import chalk from "chalk";
 import { ClientEvent } from "../../types";
 
 export const Event: ClientEvent = {

@@ -273,7 +273,6 @@ export async function swap_pages(
   guild_settings: guild_data,
 ) {
   const prefix = guild_settings?.prefix as string;
-  const ls = guild_settings?.language as string;
   const cmduser = message.author;
   let currentPage = 0;
   //GET ALL EMBEDS
@@ -483,7 +482,7 @@ export async function GetUser(
     let args = arg;
 
     if (!client || !message) return reject("CLIENT IS NOT DEFINED");
-    if (!args || args == null || args == undefined)
+    if (!args)
       args = message.content.trim().split(/ +/).slice(1);
     let user: GuildMember | User | undefined | null | string =
       message.mentions.users.first();
@@ -501,7 +500,7 @@ export async function GetUser(
       user = message.guild?.members.cache.find(
         (me) => String(me.user.tag).toLowerCase() == user,
       );
-      if (!user || user == null || !user.id) {
+      if (!user) {
         alluser = message.guild?.members.cache.map((member) =>
           String(
             member.displayName + "#" + member.user.discriminator,
@@ -516,7 +515,7 @@ export async function GetUser(
               me.displayName + "#" + me.user.discriminator,
             ).toLowerCase() == user,
         );
-        if (!user || user == null || !user.id) return reject(errormessage);
+        if (!user) return reject(errormessage);
       }
 
       user = await client.getUser?.(user.user.id).catch(() => null);
@@ -536,7 +535,7 @@ export async function GetGlobalUser(
   const errormessage = "<:no:948483017993769041> I failed finding that User...";
   return new Promise(async (resolve, reject) => {
     if (!client || !message) return reject("CLIENT IS NOT DEFINED");
-    if (!args || args == null || args == undefined)
+    if (!args)
       args = message.content.trim().split(/ +/).slice(1);
     let user: GuildMember | User | undefined | null | string =
       message.mentions.users.first();
@@ -561,7 +560,7 @@ export async function GetGlobalUser(
         user.startsWith(args.join(" ").toLowerCase()),
       );
       user = allmembers.find((me) => String(me.user.tag).toLowerCase() == user);
-      if (!user || user == null || !user.id) {
+      if (!user) {
         user = alluser.find((user) =>
           user.startsWith(args.join(" ").toLowerCase()),
         );
@@ -571,7 +570,7 @@ export async function GetGlobalUser(
               me.displayName + "#" + me.user.discriminator,
             ).toLowerCase() == user,
         );
-        if (!user || user == null || !user.id) return reject(errormessage);
+        if (!user) return reject(errormessage);
       }
       user = await client.getUser?.(user.user.id).catch(() => null);
       if (!user) return reject(errormessage);
@@ -582,10 +581,6 @@ export async function GetGlobalUser(
     }
   });
 }
-
-type MessageComponents = {
-  components: ButtonBuilder[];
-}[];
 
 export function getDisabledComponents(
   MessageComponents: ActionRow<MessageActionRowComponent>[] | null | undefined
