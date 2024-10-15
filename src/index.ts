@@ -49,7 +49,7 @@ import { MuteHandler } from "./handlers/mutes";
   if (process.env.MODE && process.env.MODE === "production") {
     try {
       client.sentry = init({
-        dsn: "https://dc2f806f7710a160423c4c00cb2254e4@o4507611654717440.ingest.de.sentry.io/4507616196165712",
+        dsn: process.env.SENTRY_DNS_ADDRESS,
         integrations: [
           // Add our Profiling integration
           nodeProfilingIntegration(),
