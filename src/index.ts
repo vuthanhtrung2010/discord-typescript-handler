@@ -1,8 +1,7 @@
 import { Client, GatewayIntentBits, Partials } from "discord.js";
 import { readdirSync } from "fs";
 import { ClusterClient, getInfo } from "discord-hybrid-sharding";
-import { init } from "@sentry/node";
-import { nodeProfilingIntegration } from "@sentry/profiling-node";
+import { init } from "@sentry/bun";
 // import { Shard } from "discord-cross-hosting";
 
 import { ClientVar } from "./handlers/clientvariables";
@@ -51,13 +50,8 @@ import { MuteHandler } from "./handlers/mutes";
     try {
       client.sentry = init({
         dsn: process.env.SENTRY_DNS_ADDRESS,
-        integrations: [
-          // Add our Profiling integration
-          nodeProfilingIntegration(),
-        ],
         // Performance Monitoring
         tracesSampleRate: 1.0, // Capture 100% of the transactions
-        profilesSampleRate: 1.0,
         environment: "production",
       });
     } catch (e) {

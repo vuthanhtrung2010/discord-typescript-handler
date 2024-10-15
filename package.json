@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run cluster",
     "server": "tsx --tsconfig ./tsconfig.json ./src/Server.ts",
-    "cluster": "tsx --tsconfig ./tsconfig.json ./src/Cluster.ts",
+    "cluster": "bun run ./src/Cluster.ts",
     "build": "prisma migrate dev --name init"
   },
   "keywords": [],
@@ -15,8 +15,7 @@
   "dependencies": {
     "@m3rcena/weky": "~8.7.2",
     "@prisma/client": "^5.17.0",
-    "@sentry/node": "^8.22.0",
-    "@sentry/profiling-node": "^8.22.0",
+    "@sentry/bun": "^8.34.0",
     "@tensorflow-models/toxicity": "^1.2.2",
     "axios": "^1.7.3",
     "bun": "^1.1.30",

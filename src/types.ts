@@ -16,7 +16,7 @@ import { ClusterClient } from "discord-hybrid-sharding";
 import { Shard } from "discord-cross-hosting";
 import { Ollama } from "ollama";
 import { LavalinkManager } from "lavalink-client";
-import { NodeClient } from "@sentry/node";
+import { NodeClient } from "@sentry/bun";
 
 // Define type for guild_settings
 type ThenArg<T> = T extends PromiseLike<infer U> ? U : T;
