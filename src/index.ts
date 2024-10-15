@@ -8,6 +8,7 @@ import { nodeProfilingIntegration } from "@sentry/profiling-node";
 import { ClientVar } from "./handlers/clientvariables";
 import { CommandManager } from "./handlers/commands";
 import { DatabaseManager } from "./handlers/loaddb";
+import { EventsManager } from "./handlers/events";
 
 import { ExtendedClient } from "./types";
 import "dotenv/config";
@@ -68,6 +69,7 @@ import { MuteHandler } from "./handlers/mutes";
   await CommandManager(client);
   await DatabaseManager(client);
   await MuteHandler(client);
+  await EventsManager(client);
 
   await client.login(process.env.TOKEN);
 })();
